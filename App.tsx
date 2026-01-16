@@ -105,8 +105,8 @@ const App: React.FC = () => {
   }, [requests]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50">
-      {/* Header - Image background, badge removed as requested */}
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
+      {/* Header - Immersive Deep Dark Background for the text section */}
       <header 
         className="relative text-white py-24 md:py-36 px-6 shadow-2xl overflow-hidden"
         style={{
@@ -115,14 +115,16 @@ const App: React.FC = () => {
           backgroundPosition: 'center 35%',
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+        {/* Darkened overlay to match the deep blue/grey theme in the screenshot */}
+        <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-[2px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-slate-950/90"></div>
         
         <div className="max-w-4xl mx-auto relative z-10 text-center md:text-left">
-          <h1 className="text-4xl md:text-7xl font-black mb-8 tracking-tighter leading-[1.1] italic drop-shadow-[0_8px_16px_rgba(0,0,0,0.8)]">
+          <h1 className="text-4xl md:text-7xl font-black mb-10 tracking-tighter leading-[1.1] italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] text-white">
             {CONCERT_NAME}
           </h1>
           <div className="flex flex-col md:flex-row items-center md:items-start gap-5">
-            <span className="flex items-center bg-blue-600/90 px-6 py-3 rounded-2xl border border-white/30 text-sm md:text-xl font-black shadow-2xl backdrop-blur-sm transition-all hover:scale-105">
+            <span className="flex items-center bg-blue-600 px-6 py-3 rounded-2xl border border-white/20 text-sm md:text-xl font-black shadow-2xl transition-all hover:scale-105">
               <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
               </svg>
@@ -130,7 +132,7 @@ const App: React.FC = () => {
             </span>
             <button 
               onClick={handleShare}
-              className="flex items-center bg-black/40 hover:bg-black/60 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 text-sm md:text-xl font-bold transition-all active:scale-95 shadow-lg"
+              className="flex items-center bg-white/20 hover:bg-white/30 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/30 text-sm md:text-xl font-bold transition-all active:scale-95 shadow-lg"
             >
               <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
@@ -141,8 +143,8 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      {/* Navigation */}
-      <nav className="sticky top-0 bg-white/90 backdrop-blur-xl border-b z-20 shadow-md">
+      {/* Navigation - Light Theme */}
+      <nav className="sticky top-0 bg-white/95 backdrop-blur-xl border-b border-slate-200 z-20 shadow-sm">
         <div className="max-w-4xl mx-auto flex">
           <button 
             onClick={() => setActiveTab('form')}
@@ -162,8 +164,9 @@ const App: React.FC = () => {
       </nav>
 
       <main className="flex-1 max-w-4xl w-full mx-auto p-4 md:p-10">
+        {/* Anti-fraud alert - Light Theme */}
         <div className="mb-10 p-5 bg-amber-50 border border-amber-200 rounded-3xl flex items-start space-x-4 shadow-sm">
-          <div className="text-amber-500 p-2 bg-white rounded-2xl shadow-sm">
+          <div className="text-amber-500 p-2 bg-white rounded-2xl shadow-sm border border-amber-100">
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
@@ -198,14 +201,6 @@ const App: React.FC = () => {
                   >
                     關閉視窗
                   </button>
-                  {!lastMatch.success && (
-                    <button 
-                      onClick={handleShare}
-                      className="px-8 py-3 rounded-2xl font-black text-sm bg-white text-blue-600 border border-blue-200 hover:bg-blue-50 transition-all shadow-md active:scale-95"
-                    >
-                      分享網頁加快速度
-                    </button>
-                  )}
                 </div>
               </div>
             </div>
@@ -213,10 +208,10 @@ const App: React.FC = () => {
         )}
 
         {activeTab === 'form' ? (
-          <div className="bg-white rounded-[2.5rem] shadow-2xl border border-slate-100 overflow-hidden mb-20">
-            <div className="bg-slate-50 px-8 py-8 border-b flex justify-between items-center">
+          <div className="bg-white rounded-[2.5rem] shadow-2xl border border-slate-200 overflow-hidden mb-20">
+            <div className="bg-slate-50 px-8 py-8 border-b border-slate-100 flex justify-between items-center">
               <div>
-                <h2 className="text-2xl font-black text-slate-800 tracking-tight italic">SUBMIT REQUEST</h2>
+                <h2 className="text-2xl font-black text-slate-900 tracking-tight italic uppercase">Submit Request</h2>
                 <p className="text-slate-500 font-bold mt-1">填寫您的票券資訊，系統將即時比對</p>
               </div>
               <div className="hidden sm:block">
@@ -237,7 +232,7 @@ const App: React.FC = () => {
                       key={d}
                       type="button"
                       onClick={() => setDate(d)}
-                      className={`py-5 px-6 rounded-2xl border-2 font-black text-lg transition-all ${date === d ? 'border-blue-600 bg-blue-50 text-blue-700 shadow-xl ring-4 ring-blue-100 scale-[1.02]' : 'border-slate-100 bg-white text-slate-300 hover:border-slate-200 hover:text-slate-500'}`}
+                      className={`py-5 px-6 rounded-2xl border-2 font-black text-lg transition-all ${date === d ? 'border-blue-600 bg-blue-50 text-blue-700 shadow-xl ring-4 ring-blue-100 scale-[1.02]' : 'border-slate-100 bg-white text-slate-300 hover:border-slate-200 hover:text-slate-400'}`}
                     >
                       {d}
                     </button>
@@ -248,16 +243,16 @@ const App: React.FC = () => {
               <div className="space-y-6">
                 <div className="flex items-center text-blue-600 space-x-4">
                   <span className="text-4xl font-black italic opacity-20">01</span>
-                  <h3 className="font-black text-2xl tracking-tight">您持有的票券 (HAVE)</h3>
+                  <h3 className="font-black text-2xl tracking-tight uppercase">您持有的票券 (Have)</h3>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs font-black text-slate-400 uppercase tracking-widest">區域 (Area)</label>
-                    <input required value={haveArea} onChange={e => setHaveArea(e.target.value)} placeholder="例: 特B" className="w-full px-6 py-5 rounded-3xl bg-slate-100 border-none focus:ring-4 focus:ring-blue-100 focus:bg-white transition-all font-black text-slate-800" />
+                    <input required value={haveArea} onChange={e => setHaveArea(e.target.value)} placeholder="例: 特B" className="w-full px-6 py-5 rounded-3xl bg-slate-100 border-none focus:ring-4 focus:ring-blue-100 focus:bg-white transition-all font-black text-slate-900 shadow-inner" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs font-black text-slate-400 uppercase tracking-widest">排數 (Row)</label>
-                    <input required value={haveRow} onChange={e => setHaveRow(e.target.value)} placeholder="例: 15" className="w-full px-6 py-5 rounded-3xl bg-slate-100 border-none focus:ring-4 focus:ring-blue-100 focus:bg-white transition-all font-black text-slate-800" />
+                    <input required value={haveRow} onChange={e => setHaveRow(e.target.value)} placeholder="例: 15" className="w-full px-6 py-5 rounded-3xl bg-slate-100 border-none focus:ring-4 focus:ring-blue-100 focus:bg-white transition-all font-black text-slate-900 shadow-inner" />
                   </div>
                 </div>
               </div>
@@ -265,16 +260,16 @@ const App: React.FC = () => {
               <div className="space-y-6">
                 <div className="flex items-center text-indigo-600 space-x-4">
                   <span className="text-4xl font-black italic opacity-20">02</span>
-                  <h3 className="font-black text-2xl tracking-tight">欲交換的目標 (WANT)</h3>
+                  <h3 className="font-black text-2xl tracking-tight uppercase">欲交換的目標 (Want)</h3>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs font-black text-slate-400 uppercase tracking-widest">區域 (Area)</label>
-                    <input required value={wantArea} onChange={e => setWantArea(e.target.value)} placeholder="例: 特A" className="w-full px-6 py-5 rounded-3xl bg-slate-100 border-none focus:ring-4 focus:ring-indigo-100 focus:bg-white transition-all font-black text-slate-800" />
+                    <input required value={wantArea} onChange={e => setWantArea(e.target.value)} placeholder="例: 特A" className="w-full px-6 py-5 rounded-3xl bg-slate-100 border-none focus:ring-4 focus:ring-indigo-100 focus:bg-white transition-all font-black text-slate-900 shadow-inner" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs font-black text-slate-400 uppercase tracking-widest">排數 (Row)</label>
-                    <input required value={wantRow} onChange={e => setWantRow(e.target.value)} placeholder="例: 1" className="w-full px-6 py-5 rounded-3xl bg-slate-100 border-none focus:ring-4 focus:ring-indigo-100 focus:bg-white transition-all font-black text-slate-800" />
+                    <input required value={wantRow} onChange={e => setWantRow(e.target.value)} placeholder="例: 1" className="w-full px-6 py-5 rounded-3xl bg-slate-100 border-none focus:ring-4 focus:ring-indigo-100 focus:bg-white transition-all font-black text-slate-900 shadow-inner" />
                   </div>
                 </div>
               </div>
@@ -282,10 +277,10 @@ const App: React.FC = () => {
               <div className="space-y-6">
                 <div className="flex items-center text-slate-800 space-x-4">
                   <span className="text-4xl font-black italic opacity-20">03</span>
-                  <h3 className="font-black text-2xl tracking-tight">聯絡方式 (IG / FB)</h3>
+                  <h3 className="font-black text-2xl tracking-tight uppercase">聯絡方式 (IG / FB)</h3>
                 </div>
                 <div className="space-y-4">
-                  <input required value={contact} onChange={e => setContact(e.target.value)} placeholder="請輸入 IG 或 FB 帳號，以便配對後聯繫" className="w-full px-6 py-5 rounded-3xl bg-slate-100 border-none focus:ring-4 focus:ring-slate-200 focus:bg-white transition-all font-black text-slate-800" />
+                  <input required value={contact} onChange={e => setContact(e.target.value)} placeholder="請輸入 IG 或 FB 帳號，以便配對後聯繫" className="w-full px-6 py-5 rounded-3xl bg-slate-100 border-none focus:ring-4 focus:ring-slate-200 focus:bg-white transition-all font-black text-slate-900 shadow-inner" />
                   <div className="flex items-center p-4 bg-slate-50 rounded-2xl border border-slate-100">
                     <input type="checkbox" required id="agree" className="w-5 h-5 rounded-md border-slate-300 text-blue-600 focus:ring-blue-500 mr-3" />
                     <label htmlFor="agree" className="text-xs md:text-sm text-slate-500 font-bold">我已了解「本平台僅供資訊媒合，交易風險需自行承擔」並同意公開聯絡資訊。</label>
@@ -300,13 +295,13 @@ const App: React.FC = () => {
           </div>
         ) : (
           <div className="space-y-10 animate-in fade-in duration-700">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-8 md:p-10 rounded-[2.5rem] shadow-xl border border-slate-100">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-slate-200">
               <div>
-                <h2 className="text-3xl font-black text-slate-800 italic tracking-tighter">WAITING LIST</h2>
+                <h2 className="text-3xl font-black text-slate-900 italic tracking-tighter uppercase">Waiting List</h2>
                 <p className="text-slate-400 font-black mt-1">目前線上有 {filteredRequests.length} 位 My Day 正在等候換票</p>
               </div>
-              <div className="flex bg-slate-100 p-2 rounded-[1.5rem] self-start md:self-center">
-                <div className="px-6 py-3 text-sm font-black rounded-2xl bg-white shadow-md text-blue-600">
+              <div className="flex bg-slate-50 p-2 rounded-[1.5rem] self-start md:self-center border border-slate-100">
+                <div className="px-6 py-3 text-sm font-black rounded-2xl bg-white shadow-sm text-blue-600">
                   全日期展示中
                 </div>
               </div>
@@ -321,11 +316,11 @@ const App: React.FC = () => {
                 ))}
               </div>
             ) : (
-              <div className="bg-white rounded-[3rem] border-4 border-dashed border-slate-100 p-24 text-center">
+              <div className="bg-white rounded-[3rem] border-4 border-dashed border-slate-200 p-24 text-center">
                 <div className="bg-slate-50 w-28 h-28 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border border-slate-100">
                   <ICONS.Search className="w-14 h-14 text-slate-300" />
                 </div>
-                <h3 className="text-slate-800 font-black text-3xl mb-3 italic">EMPTY STAGE!</h3>
+                <h3 className="text-slate-800 font-black text-3xl mb-3 italic uppercase">Empty Stage!</h3>
                 <p className="text-slate-400 font-bold max-w-sm mx-auto leading-relaxed text-lg">
                   目前還沒有等待配對的需求。快來當第一個發起交換的人吧！
                 </p>
@@ -338,11 +333,11 @@ const App: React.FC = () => {
         )}
       </main>
 
-      <footer className="bg-white border-t py-16 px-6 mt-32 text-center">
+      <footer className="bg-white border-t border-slate-200 py-16 px-6 mt-32 text-center">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="flex justify-center items-center space-x-6">
             <div className="h-px w-12 bg-slate-200"></div>
-            <span className="text-2xl font-black text-slate-200 italic tracking-widest uppercase">The DECADE</span>
+            <span className="text-2xl font-black text-slate-300 italic tracking-widest uppercase">The DECADE</span>
             <div className="h-px w-12 bg-slate-200"></div>
           </div>
           <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">
